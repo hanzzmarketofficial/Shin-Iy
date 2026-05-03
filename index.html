@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Shin' Ly | Premium Digital Hub</title>
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google Fonts: Inter & Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, #f0f5f9 0%, #e6eef4 100%);
+      font-family: 'Inter', sans-serif;
+      color: #1a2c3c;
+      padding: 2rem 1.5rem;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    /* Header Premium */
+    .hero {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    .hero h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 3.2rem;
+      font-weight: 700;
+      background: linear-gradient(120deg, #0a4b6e, #2c85b0, #6096b4);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.5px;
+    }
+    .hero p {
+      color: #4a6f86;
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-top: 0.5rem;
+    }
+    .chip {
+      display: inline-block;
+      background: rgba(44, 125, 160, 0.12);
+      backdrop-filter: blur(2px);
+      padding: 0.25rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #1f6c93;
+      margin-top: 0.8rem;
+    }
+
+    /* 3 Opsi Cards */
+    .options-trio {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.8rem;
+      justify-content: center;
+      margin-bottom: 2.5rem;
+    }
+    .opt-card {
+      background: #ffffff;
+      border-radius: 2rem;
+      padding: 1.4rem 2rem;
+      flex: 1;
+      min-width: 170px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 12px 28px -12px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(166, 199, 214, 0.4);
+    }
+    .opt-card i {
+      font-size: 2.5rem;
+      color: #2c7da0;
+      margin-bottom: 0.6rem;
+    }
+    .opt-card h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #1f4e6e;
+    }
+    .opt-card p {
+      font-size: 0.85rem;
+      color: #648ca0;
+      margin-top: 4px;
+    }
+    .opt-card.active {
+      border: 2px solid #2c7da0;
+      background: white;
+      box-shadow: 0 20px 30px -12px rgba(44, 125, 160, 0.25);
+      transform: scale(1.02);
+    }
+    .opt-card:hover:not(.inactive) {
+      transform: translateY(-5px);
+      border-color: #9bc0d0;
+      box-shadow: 0 24px 35px -14px rgba(0, 0, 0, 0.12);
+    }
+
+    /* Panel konten dinamis */
+    .dashboard {
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(2px);
+      border-radius: 2rem;
+      padding: 2rem 2rem 2.2rem;
+      box-shadow: 0 25px 40px -16px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(255,255,240,0.8);
+      transition: 0.2s;
+    }
+
+    /* Marketplace Grid */
+    .grid-produk {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 1.6rem;
+      margin-top: 1.8rem;
+    }
+    .produk-card {
+      background: #ffffff;
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+      border: 1px solid #e2edf2;
+      transition: all 0.2s;
+      cursor: pointer;
+      box-shadow: 0 5px 12px rgba(44, 125, 160, 0.05);
+    }
+    .produk-card:hover {
+      border-color: #7fa9be;
+      transform: translateY(-5px);
+      background: #fefefe;
+      box-shadow: 0 20px 28px -12px rgba(34, 98, 122, 0.2);
+    }
+    .produk-nama {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #155e7e;
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .produk-desk {
+      color: #5b7f91;
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+    }
+    .harga {
+      font-weight: 800;
+      font-size: 1.5rem;
+      color: #0b5e7e;
+      background: #eef4f8;
+      display: inline-block;
+      padding: 0.2rem 1rem;
+      border-radius: 40px;
+    }
+    .wa-hint {
+      margin-top: 0.8rem;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: #2f7d55;
+    }
+    .badge-wa {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #e9f0f5;
+      border-radius: 30px;
+      padding: 4px 12px;
+      font-size: 0.7rem;
+    }
+
+    /* Payment Section */
+    .pay-methods {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+    .pay-item {
+      background: #fbfefe;
+      border-radius: 1.5rem;
+      padding: 1rem 1.8rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1.2rem;
+      border: 1px solid #ddecf4;
+      transition: 0.1s;
+    }
+    .pay-icon {
+      font-size: 2.2rem;
+      min-width: 55px;
+      text-align: center;
+    }
+    .pay-info {
+      flex: 1;
+    }
+    .pay-info h4 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #1c5777;
+    }
+    .pay-number {
+      font-family: monospace;
+      background: #eef2f7;
+      padding: 0.3rem 1rem;
+      border-radius: 60px;
+      display: inline-block;
+      font-weight: 600;
+      font-size: 1rem;
+      margin-top: 6px;
+    }
+    .btn-copy {
+      background: #eef2f7;
+      border: none;
+      padding: 6px 15px;
+      border-radius: 2rem;
+      font-weight: 600;
+      font-size: 0.75rem;
+      color: #226e91;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .btn-copy:hover {
+      background: #d9e5ed;
+    }
+    .qris-link {
+      background: #226e91;
+      color: white;
+      padding: 6px 18px;
+      border-radius: 2rem;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.8rem;
+      display: inline-block;
+    }
+
+    /* Social Media */
+    .socmed-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-top: 1.2rem;
+    }
+    .soc-card {
+      background: white;
+      border-radius: 1.5rem;
+      padding: 1rem 1.8rem;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      border: 1px solid #e2edf5;
+    }
+    .soc-icon {
+      font-size: 2.2rem;
+      width: 60px;
+    }
+    .soc-detail h3 {
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: #1c4e6e;
+    }
+    .soc-detail p {
+      font-weight: 600;
+      background: #eff4f9;
+      padding: 0.2rem 1rem;
+      border-radius: 2rem;
+      font-size: 0.9rem;
+      display: inline-block;
+    }
+    .soc-btn {
+      background: #1f6392;
+      color: white;
+      padding: 0.4rem 1.2rem;
+      border-radius: 2rem;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+    .soc-btn:hover {
+      background: #0f4a6e;
+    }
+
+    .footer-note {
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 0.75rem;
+      color: #7396aa;
+    }
+
+    @media (max-width: 680px) {
+      body { padding: 1rem; }
+      .opt-card h3 { font-size: 1.2rem; }
+      .dashboard { padding: 1.3rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="hero">
+    <h1>✦ Shin' Ly ✦</h1>
+    <p>Gateway to modern digital solutions</p>
+    <div class="chip"><i class="fas fa-bolt"></i> instan • premium • amanah</div>
+  </div>
+
+  <div class="options-trio">
+    <div class="opt-card" data-menu="market">
+      <i class="fas fa-store"></i>
+      <h3>MarketPlace</h3>
+      <p>Produk Shin' Ly</p>
+    </div>
+    <div class="opt-card" data-menu="payment">
+      <i class="fas fa-credit-card"></i>
+      <h3>Payment</h3>
+      <p>Bayar mudah</p>
+    </div>
+    <div class="opt-card" data-menu="social">
+      <i class="fas fa-hashtag"></i>
+      <h3>Social Media</h3>
+      <p>Ikuti kami</p>
+    </div>
+  </div>
+
+  <div class="dashboard" id="mainPanel">
+    <!-- konten dinamis di sini -->
+    <div style="text-align: center; padding: 2rem;"><i class="fas fa-spinner fa-pulse"></i> Loading Shin' Ly ecosystem...</div>
+  </div>
+  <div class="footer-note">
+    <i class="fab fa-whatsapp"></i> Klik produk → langsung terhubung ke official WhatsApp
+  </div>
+</div>
+
+<script>
+  // ======================= DATA PRODUK (Marketplace) =======================
+  const produkList = [
+    {
+      id: "setoran_gmail",
+      title: "📧 SETORAN GMAIL FRESH",
+      desc: "Akun Gmail baru 100% fresh, siap pakai untuk berbagai keperluan.",
+      price: "Rp2.000 / Gmail"
+    },
+    {
+      id: "desain_logo",
+      title: "🎨 JASA DESAIN LOGO",
+      desc: "Logo profesional, unik & modern. Revisi hingga cocok.",
+      price: "Rp1.000 / Logo"
+    },
+    {
+      id: "topup_games",
+      title: "🎮 JASA TOP UP ALL GAMES",
+      desc: "Free Fire, ML, PUBG, Valorant, Genshin, dll. Fast respon.",
+      price: "Harga terbaik"
+    },
+    {
+      id: "nokos_all_negara",
+      title: "📱 NOKOS ALL NEGARA",
+      desc: "Nomor kosong (virtual) berbagai negara. Untuk verifikasi OTP dll.",
+      price: "Mulai hubungi CS"
+    }
+  ];
+
+  // Link WhatsApp tujuan (sesuai permintaan)
+  const SHINLY_WA_LINK = "https://wa.me/qr/PYO4EPHW73YID1";
+
+  // Fungsi redirect ke WA
+  function redirectToWhatsApp() {
+    window.open(SHINLY_WA_LINK, "_blank");
+  }
+
+  // RENDER MARKETPLACE (Opsi 1)
+  function renderMarketplace() {
+    const panel = document.getElementById("mainPanel");
+    let produkHTML = `
+      <div>
+        <h2 style="font-size: 1.7rem; display: flex; gap: 8px; align-items: center;"><i class="fas fa-cube" style="color:#2c7da0;"></i> ✨ Katalog Shin' Ly ✨</h2>
+        <p style="color:#48758c; margin-bottom: 0.5rem;">Klik salah satu produk untuk order via WhatsApp resmi</p>
+        <div class="grid-produk">
+    `;
+    produkList.forEach(prod => {
+      produkHTML += `
+        <div class="produk-card" data-prod="${prod.id}">
+          <div class="produk-nama">${prod.title}</div>
+          <div class="produk-desk">${prod.desc}</div>
+          <div class="harga">${prod.price}</div>
+          <div class="wa-hint"><span class="badge-wa"><i class="fab fa-whatsapp"></i> klik → chat sekarang</span></div>
+        </div>
+      `;
+    });
+    produkHTML += `</div><div style="margin-top: 1rem; font-size: 0.7rem; background:#eef3f8; padding: 8px 12px; border-radius: 20px; display: inline-block;"><i class="fas fa-shield-alt"></i> Transaksi aman & terpercaya</div></div>`;
+    panel.innerHTML = produkHTML;
+
+    // Event listener setiap produk -> redirect WhatsApp
+    document.querySelectorAll('.produk-card').forEach(card => {
+      card.addEventListener('click', (e) => {
+        e.stopPropagation();
+        redirectToWhatsApp();
+      });
+    });
+  }
+
+  // RENDER PAYMENT (Opsi 2) — Desain abu-abu & putih elegan
+  function renderPayment() {
+    const panel = document.getElementById("mainPanel");
+    panel.innerHTML = `
+      <div>
+        <h2 style="font-size: 1.7rem; margin-bottom: 0.3rem;"><i class="fas fa-wallet"></i> Metode Pembayaran</h2>
+        <p style="color:#537e94; margin-bottom: 1.4rem;">Pilih metode favorit, semua transaksi aman</p>
+        <div class="pay-methods">
+          <div class="pay-item">
+            <div class="pay-icon"><i class="fas fa-university" style="color:#1f6392;"></i></div>
+            <div class="pay-info">
+              <h4>DANA</h4>
+              <div class="pay-number" id="danaNum">081973753505</div>
+            </div>
+            <button class="btn-copy" data-copy-target="danaNum"><i class="far fa-copy"></i> Salin</button>
+          </div>
+          <div class="pay-item">
+            <div class="pay-icon"><i class="fab fa-google-pay" style="color:#148566;"></i></div>
+            <div class="pay-info">
+              <h4>GoPay</h4>
+              <div class="pay-number" id="gopayNum">081973753505</div>
+            </div>
+            <button class="btn-copy" data-copy-target="gopayNum"><i class="far fa-copy"></i> Salin</button>
+          </div>
+          <div class="pay-item">
+            <div class="pay-icon"><i class="fas fa-qrcode" style="color:#2a6d8f;"></i></div>
+            <div class="pay-info">
+              <h4>QRIS (Semua Aplikasi)</h4>
+              <p style="font-size:0.8rem;">Scan QRIS cepat & mudah</p>
+              <a href="https://imgur.com/a/TVzeBYz" target="_blank" class="qris-link"><i class="fas fa-external-link-alt"></i> Lihat QRIS (Imgur)</a>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top: 1.5rem; background:#f2f6fa; padding: 1rem; border-radius: 1.5rem; text-align: center; border:1px solid #d9e6ef;">
+          <i class="fas fa-clock"></i> 24/7 | Konfirmasi pembayaran via WhatsApp Shin' Ly
+        </div>
+      </div>
+    `;
+
+    // fungsi copy
+    const copyBtns = document.querySelectorAll('.btn-copy');
+    copyBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.getAttribute('data-copy-target');
+        if (targetId) {
+          const textElement = document.getElementById(targetId);
+          if (textElement) {
+            const textToCopy = textElement.innerText;
+            navigator.clipboard.writeText(textToCopy).then(() => {
+              const originalText = btn.innerHTML;
+              btn.innerHTML = '<i class="fas fa-check"></i> Tersalin!';
+              setTimeout(() => {
+                btn.innerHTML = originalText;
+              }, 1500);
+            }).catch(() => alert("Salin manual: " + textToCopy));
+          }
+        }
+      });
+    });
+  }
+
+  // RENDER SOCIAL MEDIA (Opsi 3)
+  function renderSocial() {
+    const panel = document.getElementById("mainPanel");
+    panel.innerHTML = `
+      <div>
+        <h2 style="font-size: 1.7rem;"><i class="fas fa-share-alt"></i> Social Media</h2>
+        <p style="color:#48758c; margin-bottom: 1.3rem;">Terhubung dengan Shin' Ly di berbagai platform</p>
+        <div class="socmed-list">
+          <div class="soc-card">
+            <div class="soc-icon"><i class="fab fa-tiktok" style="color:#010101; text-shadow: 0 0 2px #2c7da0;"></i></div>
+            <div class="soc-detail">
+              <h3>TikTok</h3>
+              <p>@cmiw536</p>
+            </div>
+            <a href="https://www.tiktok.com/@cmiw536" target="_blank" class="soc-btn"><i class="fab fa-tiktok"></i> Kunjungi</a>
+          </div>
+          <div class="soc-card">
+            <div class="soc-icon"><i class="fab fa-whatsapp" style="color:#25D366;"></i></div>
+            <div class="soc-detail">
+              <h3>WhatsApp</h3>
+              <p>+62 888-1926-324</p>
+            </div>
+            <a href="https://wa.me/628881926324" target="_blank" class="soc-btn"><i class="fab fa-whatsapp"></i> Chat Sekarang</a>
+          </div>
+          <div class="soc-card">
+            <div class="soc-icon"><i class="fas fa-envelope"></i></div>
+            <div class="soc-detail">
+              <h3>Official Support</h3>
+              <p>shinly@digital</p>
+            </div>
+            <a href="#" style="background:#88aabb; cursor:default;">Coming Soon</a>
+          </div>
+        </div>
+        <div class="wa-hint" style="margin-top: 1rem; background:#e6f0f5; padding: 8px; border-radius: 20px; text-align:center;">
+          <i class="fab fa-whatsapp"></i> Fast response via WhatsApp & TikTok DM
+        </div>
+      </div>
+    `;
+  }
+
+  // =============== HANDLE OPSI ===============
+  let currentMenu = "market";
+
+  function setActiveMenu(menuId) {
+    currentMenu = menuId;
+    // update class active pada cards
+    const allOpts = document.querySelectorAll('.opt-card');
+    allOpts.forEach(opt => {
+      const val = opt.getAttribute('data-menu');
+      if (val === menuId) {
+        opt.classList.add('active');
+      } else {
+        opt.classList.remove('active');
+      }
+    });
+    // render konten sesuai menu
+    if (menuId === 'market') {
+      renderMarketplace();
+    } else if (menuId === 'payment') {
+      renderPayment();
+    } else if (menuId === 'social') {
+      renderSocial();
+    }
+  }
+
+  // event listener untuk 3 opsi
+  document.querySelectorAll('.opt-card').forEach(card => {
+    card.addEventListener('click', (e) => {
+      const menuVal = card.getAttribute('data-menu');
+      if (menuVal === 'market') setActiveMenu('market');
+      else if (menuVal === 'payment') setActiveMenu('payment');
+      else if (menuVal === 'social') setActiveMenu('social');
+    });
+  });
+
+  // Inisiasi default: Marketplace (opsi 1)
+  setActiveMenu('market');
+</script>
+</body>
+</html>
